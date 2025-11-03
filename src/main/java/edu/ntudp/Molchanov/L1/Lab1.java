@@ -1,4 +1,4 @@
-package edu.ntudp.Molchanov;
+package edu.ntudp.Molchanov.L1;
 
 import java.util.Scanner;
 import java.util.Random;
