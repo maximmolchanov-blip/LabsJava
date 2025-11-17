@@ -1,9 +1,8 @@
 package edu.ntudp.Molchanov.L2.controller;
 
-import edu.ntudp.Molchanov.L2.model.University;
-import edu.ntudp.Molchanov.L2.model.Faculty;
-import edu.ntudp.Molchanov.L2.model.Human;
-import edu.ntudp.Molchanov.L2.model.Sex;
+import edu.ntudp.Molchanov.L2.model.*;
+
+import java.util.List;
 
 public class UniversityCreator extends BaseCreator<University> {
     private FacultyCreator facultyCreator;
@@ -13,16 +12,13 @@ public class UniversityCreator extends BaseCreator<University> {
     }
 
     public University createTypicalUniversity() {
-        // Create rector
         Human rector = new Human("Volodymyr", "Rektorenko", "Rektorovych", Sex.MALE);
 
-        // Create university
         University university = new University(
                 "Oles Honchar Dnipro National University",
                 rector
         );
 
-        // Create Faculty of Applied Mathematics
         Human deanMath = new Human("Alexander", "Mathematician", "Alexandrovych", Sex.MALE);
         String[][] mathDepartments = {
                 {"Department of Software Engineering", "SE-21", "SE-22", "SE-23"},
@@ -35,7 +31,6 @@ public class UniversityCreator extends BaseCreator<University> {
         );
         university.addFaculty(mathFaculty);
 
-        // Create Faculty of Physics
         Human deanPhys = new Human("Natalia", "Physicist", "Vasylivna", Sex.FEMALE);
         String[][] physDepartments = {
                 {"Department of Theoretical Physics", "TP-21", "TP-22"},
@@ -48,7 +43,6 @@ public class UniversityCreator extends BaseCreator<University> {
         );
         university.addFaculty(physFaculty);
 
-        // Create Faculty of Economics
         Human deanEcon = new Human("Iryna", "Ekonomova", "Mykhailivna", Sex.FEMALE);
         String[][] econDepartments = {
                 {"Department of Economic Theory", "EC-21", "EC-22"},
@@ -67,5 +61,21 @@ public class UniversityCreator extends BaseCreator<University> {
     @Override
     public University create() {
         return createTypicalUniversity();
+    }
+
+    public String getUniversityDetailedInfo(University university) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("========================================\n");
+        sb.append("University: ").append(university.getName())
+                .append(", Head: ").append(university.getHead().getFullName()).append("\n");
+        sb.append("========================================\n");
+        sb.append("Number of faculties: ").append(university.getFaculties().size()).append("\n\n");
+
+        List<Faculty> faculties = university.getFaculties();
+        for (Faculty faculty : faculties) {
+            sb.append(facultyCreator.getFacultyDetailedInfo(faculty)).append("\n");
+        }
+
+        return sb.toString();
     }
 }

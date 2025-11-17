@@ -13,8 +13,8 @@ public class Run {
         UniversityCreator creator = new UniversityCreator();
         University university = creator.createTypicalUniversity();
 
-        // Вивід через view
         UniversityPrinter.printFullInfo(university);
         UniversityPrinter.printStatistics(university);
+        UniversityPrinter. printAllStudentsCompact(university);
     }
 }

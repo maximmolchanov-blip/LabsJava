@@ -1,9 +1,8 @@
 package edu.ntudp.Molchanov.L2.view;
 
-import edu.ntudp.Molchanov.L2.model.University;
-import edu.ntudp.Molchanov.L2.model.Faculty;
-import edu.ntudp.Molchanov.L2.model.Department;
-import edu.ntudp.Molchanov.L2.model.Group;
+import edu.ntudp.Molchanov.L2.model.*;
+
+import java.util.List;
 
 public class UniversityPrinter {
     public static void printFullInfo(University university) {
@@ -26,6 +25,39 @@ public class UniversityPrinter {
         }
 
         System.out.println("========================================\n");
+    }
+
+    public static void printAllStudentsCompact(University university) {
+        System.out.println("=== ALL STUDENTS (COMPACT VIEW) ===");
+        System.out.println("University: " + university.getName());
+        System.out.println("====================================\n");
+
+        List<Faculty> faculties = university.getFaculties();
+        int studentCounter = 0;
+
+        for (Faculty faculty : faculties) {
+            List<Department> departments = faculty.getDepartments();
+            for (Department department : departments) {
+                List<Group> groups = department.getGroups();
+                for (Group group : groups) {
+                    List<Student> students = group.getStudents();
+                    for (Student student : students) {
+                        studentCounter++;
+                        System.out.printf("%3d. %-30s | %-8s | %-25s | %-15s | %s%n",
+                                studentCounter,
+                                student.getFullName(),
+                                student.getStudentId(),
+                                group.getName(),
+                                department.getName(),
+                                faculty.getName());
+                    }
+                }
+            }
+        }
+
+        System.out.println("====================================");
+        System.out.println("TOTAL: " + studentCounter + " students");
+        System.out.println("====================================\n");
     }
 
     public static void printStatistics(University university) {
