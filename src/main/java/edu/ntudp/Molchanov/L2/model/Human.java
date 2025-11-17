@@ -1,5 +1,7 @@
 package edu.ntudp.Molchanov.L2.model;
 
+import java.util.Objects;
+
 public class Human {
     private String firstName;
     private String lastName;
@@ -11,6 +13,18 @@ public class Human {
         this.lastName = lastName;
         this.patronymic = patronymic;
         this.sex = sex;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Human human = (Human) o;
+        return Objects.equals(firstName, human.firstName) && Objects.equals(lastName, human.lastName) && Objects.equals(patronymic, human.patronymic) && sex == human.sex;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstName, lastName, patronymic, sex);
     }
 
     public String getFirstName() {
@@ -25,7 +39,9 @@ public class Human {
         return lastName;
     }
 
-    public void setLastName(String lastName) { this.lastName = lastName; }
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
     public String getPatronymic() {
         return patronymic;
@@ -48,4 +64,6 @@ public class Human {
     public String toString() {
         return getFullName() + " (" + sex.getDescription() + ")";
     }
+
+
 }

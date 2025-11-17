@@ -1,5 +1,7 @@
 package edu.ntudp.Molchanov.L2.model;
 
+import java.util.Objects;
+
 public abstract class OrganizationalUnit {
     protected String name;
     protected Human head;
@@ -7,6 +9,18 @@ public abstract class OrganizationalUnit {
     public OrganizationalUnit(String name, Human head) {
         this.name = name;
         this.head = head;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        OrganizationalUnit that = (OrganizationalUnit) o;
+        return Objects.equals(name, that.name) && Objects.equals(head, that.head);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, head);
     }
 
     public String getName() {

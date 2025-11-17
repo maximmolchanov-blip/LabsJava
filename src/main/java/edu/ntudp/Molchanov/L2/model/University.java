@@ -2,6 +2,7 @@ package edu.ntudp.Molchanov.L2.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class University extends OrganizationalUnit {
     private List<Faculty> faculties;
@@ -13,6 +14,19 @@ public class University extends OrganizationalUnit {
 
     public void addFaculty(Faculty faculty) {
         faculties.add(faculty);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        University that = (University) o;
+        return Objects.equals(faculties, that.faculties);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), faculties);
     }
 
     public List<Faculty> getFaculties() {
