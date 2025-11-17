@@ -5,6 +5,8 @@ import edu.ntudp.Molchanov.L2.model.Human;
 import edu.ntudp.Molchanov.L2.model.Group;
 import edu.ntudp.Molchanov.L2.model.Sex;
 
+import java.util.Objects;
+
 public class DepartmentCreator extends BaseCreator<Department> {
     private GroupCreator groupCreator;
 
@@ -27,6 +29,7 @@ public class DepartmentCreator extends BaseCreator<Department> {
         Human head = new Human("Head", "Of Department", name, Sex.MALE);
         return createDepartment(name, head, groupNames, studentsPerGroup);
     }
+
 
     @Override
     public Department create() {
