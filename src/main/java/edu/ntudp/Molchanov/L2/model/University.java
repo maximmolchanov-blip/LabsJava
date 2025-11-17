@@ -15,26 +15,12 @@ public class University extends OrganizationalUnit {
         faculties.add(faculty);
     }
 
-    public void removeFaculty(Faculty faculty) {
-        faculties.remove(faculty);
-    }
-
     public List<Faculty> getFaculties() {
         return faculties;
-    }
-
-    public void setFaculties(List<Faculty> faculties) {
-        this.faculties = faculties;
     }
 
     @Override
     public String getUnitType() {
         return "University";
     }
-
-    @Override
-    public String toString() {
-        return super.toString() + ", Faculties: " + faculties.size();
-    }
 }
-

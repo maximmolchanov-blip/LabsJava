@@ -15,16 +15,8 @@ public class Faculty extends OrganizationalUnit {
         departments.add(department);
     }
 
-    public void removeDepartment(Department department) {
-        departments.remove(department);
-    }
-
     public List<Department> getDepartments() {
         return departments;
-    }
-
-    public void setDepartments(List<Department> departments) {
-        this.departments = departments;
     }
 
     @Override
@@ -32,8 +24,4 @@ public class Faculty extends OrganizationalUnit {
         return "Faculty";
     }
 
-    @Override
-    public String toString() {
-        return super.toString() + ", Departments: " + departments.size();
-    }
 }

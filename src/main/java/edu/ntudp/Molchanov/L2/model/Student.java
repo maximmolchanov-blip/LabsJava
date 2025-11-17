@@ -12,12 +12,8 @@ public class Student extends Human {
         return studentId;
     }
 
-    public void setStudentId(String studentId) {
-        this.studentId = studentId;
-    }
-
     @Override
     public String toString() {
-        return "Student: " + getFullName() + " (ID: " + studentId + ", " + getSex().getDisplayName() + ")";
+        return "Student: " + super.toString() + ", ID: " + studentId;
     }
 }

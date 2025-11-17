@@ -15,25 +15,12 @@ public class Group extends OrganizationalUnit {
         students.add(student);
     }
 
-    public void removeStudent(Student student) {
-        students.remove(student);
-    }
-
     public List<Student> getStudents() {
         return students;
-    }
-
-    public void setStudents(List<Student> students) {
-        this.students = students;
     }
 
     @Override
     public String getUnitType() {
         return "Group";
-    }
-
-    @Override
-    public String toString() {
-        return super.toString() + ", Students: " + students.size();
     }
 }

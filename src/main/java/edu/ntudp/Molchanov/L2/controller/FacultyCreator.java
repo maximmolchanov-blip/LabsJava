@@ -3,30 +3,37 @@ package edu.ntudp.Molchanov.L2.controller;
 import edu.ntudp.Molchanov.L2.model.Faculty;
 import edu.ntudp.Molchanov.L2.model.Human;
 import edu.ntudp.Molchanov.L2.model.Department;
-import java.util.List;
+import edu.ntudp.Molchanov.L2.model.Sex;
 
-public class FacultyCreator implements Creator<Faculty> {
-    private String name;
-    private Human head;
-    private List<DepartmentCreator> departmentCreators;
+public class FacultyCreator extends BaseCreator<Faculty> {
+    private DepartmentCreator departmentCreator;
 
-    public FacultyCreator(String name, Human head, List<DepartmentCreator> departmentCreators) {
-        this.name = name;
-        this.head = head;
-        this.departmentCreators = departmentCreators;
+    public FacultyCreator() {
+        this.departmentCreator = new DepartmentCreator();
+    }
+
+    public Faculty createFaculty(String name, Human head, String[][] departmentsData) {
+        Faculty faculty = new Faculty(name, head);
+
+        for (String[] deptData : departmentsData) {
+            String deptName = deptData[0];
+            String[] groupNames = java.util.Arrays.copyOfRange(deptData, 1, deptData.length);
+            Department dept = departmentCreator.createDepartment(deptName, groupNames, 5);
+            faculty.addDepartment(dept);
+        }
+
+        return faculty;
+    }
+
+    public Faculty createFaculty(String name, String[][] departmentsData) {
+        Human head = new Human("Dean", "Of Faculty", name, Sex.MALE);
+        return createFaculty(name, head, departmentsData);
     }
 
     @Override
     public Faculty create() {
-        Faculty faculty = new Faculty(name, head);
-
-        if (departmentCreators != null) {
-            for (DepartmentCreator creator : departmentCreators) {
-                Department department = creator.create();
-                faculty.addDepartment(department);
-            }
-        }
-
-        return faculty;
+        Human head = new Human("Peter", "Petrov", "Petrovych", Sex.MALE);
+        String[][] departments = {{"Department of CS", "CS-01", "CS-02"}};
+        return createFaculty("Faculty of Information Technology", head, departments);
     }
 }

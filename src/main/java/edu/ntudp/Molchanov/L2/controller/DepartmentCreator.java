@@ -1,35 +1,36 @@
 package edu.ntudp.Molchanov.L2.controller;
 
-
 import edu.ntudp.Molchanov.L2.model.Department;
 import edu.ntudp.Molchanov.L2.model.Human;
 import edu.ntudp.Molchanov.L2.model.Group;
-import java.util.List;
+import edu.ntudp.Molchanov.L2.model.Sex;
 
-public class DepartmentCreator implements Creator<Department> {
-    private String name;
-    private Human head;
-    private List<GroupCreator> groupCreators;
+public class DepartmentCreator extends BaseCreator<Department> {
+    private GroupCreator groupCreator;
 
-    public DepartmentCreator(String name, Human head, List<GroupCreator> groupCreators) {
-        this.name = name;
-        this.head = head;
-        this.groupCreators = groupCreators;
+    public DepartmentCreator() {
+        this.groupCreator = new GroupCreator();
     }
 
-    @Override
-    public Department create() {
+    public Department createDepartment(String name, Human head, String[] groupNames, int studentsPerGroup) {
         Department department = new Department(name, head);
 
-        if (groupCreators != null) {
-            for (GroupCreator creator : groupCreators) {
-                Group group = creator.create();
-                department.addGroup(group);
-            }
+        for (String groupName : groupNames) {
+            Group group = groupCreator.createGroup(groupName, studentsPerGroup);
+            department.addGroup(group);
         }
 
         return department;
     }
+
+    public Department createDepartment(String name, String[] groupNames, int studentsPerGroup) {
+        Human head = new Human("Head", "Of Department", name, Sex.MALE);
+        return createDepartment(name, head, groupNames, studentsPerGroup);
+    }
+
+    @Override
+    public Department create() {
+        Human head = new Human("Vasyl", "Vasyliev", "Vasylovych", Sex.MALE);
+        return createDepartment("Department of Software Engineering", head, new String[]{"SE-01"}, 5);
+    }
 }
-
-

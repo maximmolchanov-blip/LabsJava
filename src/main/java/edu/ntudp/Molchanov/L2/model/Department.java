@@ -15,16 +15,8 @@ public class Department extends OrganizationalUnit {
         groups.add(group);
     }
 
-    public void removeGroup(Group group) {
-        groups.remove(group);
-    }
-
     public List<Group> getGroups() {
         return groups;
-    }
-
-    public void setGroups(List<Group> groups) {
-        this.groups = groups;
     }
 
     @Override
@@ -32,8 +24,4 @@ public class Department extends OrganizationalUnit {
         return "Department";
     }
 
-    @Override
-    public String toString() {
-        return super.toString() + ", Groups: " + groups.size();
-    }
 }

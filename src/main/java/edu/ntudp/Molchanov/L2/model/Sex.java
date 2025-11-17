@@ -1,17 +1,16 @@
 package edu.ntudp.Molchanov.L2.model;
 
-
 public enum Sex {
     MALE("Male"),
     FEMALE("Female");
 
-    private final String displayName;
+    private String description;
 
-    Sex(String displayName) {
-        this.displayName = displayName;
+    Sex(String description) {
+        this.description = description;
     }
 
-    public String getDisplayName() {
-        return displayName;
+    public String getDescription() {
+        return description;
     }
 }
