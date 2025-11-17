@@ -19,6 +19,18 @@ public class Group extends OrganizationalUnit {
         return students;
     }
 
+    public void setStudents(List<Student> students) {
+        this.students = new ArrayList<>(students);
+    }
+
+    public void clearStudents() {
+        students.clear();
+    }
+
+    public void removeStudent(Student student) {
+        students.remove(student);
+    }
+
     @Override
     public String getUnitType() {
         return "Group";

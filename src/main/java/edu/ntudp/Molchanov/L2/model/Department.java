@@ -19,6 +19,10 @@ public class Department extends OrganizationalUnit {
         return groups;
     }
 
+    public void setGroups(List<Group> groups) {
+        this.groups = new ArrayList<>(groups);
+    }
+
     @Override
     public String getUnitType() {
         return "Department";

@@ -19,6 +19,10 @@ public class Faculty extends OrganizationalUnit {
         return departments;
     }
 
+    public void setDepartments(List<Department> departments) {
+        this.departments = new ArrayList<>(departments);
+    }
+
     @Override
     public String getUnitType() {
         return "Faculty";
