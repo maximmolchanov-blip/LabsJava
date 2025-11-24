@@ -1,0 +1,38 @@
+DROP TABLE IF EXISTS student_records;
+
+CREATE TABLE student_records (
+    student_id INT AUTO_INCREMENT PRIMARY KEY,
+    last_name VARCHAR(100) NOT NULL,
+    first_name VARCHAR(100) NOT NULL,
+    middle_name VARCHAR(100) NOT NULL,
+    date_of_birth DATE NOT NULL,
+    grade_book_num INT UNIQUE NOT NULL
+);
+
+
+CREATE INDEX idx_birth_date ON student_records(date_of_birth);
+
+INSERT INTO student_records (last_name, first_name, middle_name, date_of_birth, grade_book_num) VALUES
+('Petrenko', 'Andriy', 'Vasyliovych', '2004-01-15', 20241001),
+('Ivanenko', 'Maria', 'Petrivna', '2004-02-20', 20241002),
+('Kovalenko', 'Oleksiy', 'Ivanovych', '2004-03-10', 20241003),
+('Shevchenko', 'Olena', 'Mykhailivna', '2004-04-05', 20241004),
+('Boyko', 'Dmytro', 'Olehovych', '2004-05-12', 20241005),
+('Tkachenko', 'Anna', 'Serhiivna', '2004-07-18', 20241006),
+('Kravchenko', 'Viktor', 'Andriiovych', '2004-08-22', 20241007),
+('Oliynyk', 'Yulia', 'Volodymyrivna', '2004-09-30', 20241008),
+('Melnyk', 'Ihor', 'Pavlovych', '2004-10-14', 20241009),
+('Pavlenko', 'Tetiana', 'Oleksandrivna', '2004-11-25', 20241010),
+('Savchenko', 'Maksym', 'Yuriyovych', '2004-12-08', 20241011),
+('Levchenko', 'Natalia', 'Viktorivna', '2004-01-28', 20241012),
+('Moroz', 'Vladyslav', 'Hryhorovych', '2004-02-17', 20241013),
+('Polishchuk', 'Iryna', 'Romanivna', '2004-03-23', 20241014),
+('Hrytsenko', 'Artem', 'Dmytrovych', '2004-04-11', 20241015),
+('Romanenko', 'Viktoria', 'Oleksiivna', '2004-05-19', 20241016),
+('Lytvynenko', 'Serhiy', 'Anatoliyovych', '2004-07-07', 20241017),
+('Semenov', 'Kateryna', 'Ihorivna', '2004-08-16', 20241018),
+('Zakharchenko', 'Roman', 'Valeriyovych', '2004-09-03', 20241019),
+('Honcharenko', 'Darya', 'Stanislavivna', '2004-10-21', 20241020),
+('Kovalchuk', 'Pavlo', 'Mykolayovych', '2004-11-09', 20241021),
+('Vasyliev', 'Sofia', 'Artemivna', '2004-12-31', 20241022),
+('Zaytsev', 'Bohdan', 'Yaroslavovych', '2004-01-07', 20241023);
